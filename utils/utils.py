@@ -1,5 +1,5 @@
 import streamlit as st
-from sqlalchemy import create_engine,text
+from sqlalchemy import create_engine, text
 
 """Raccoglie le principali funzioni condivise dalle varie pagine"""
 
@@ -20,12 +20,12 @@ def check_connection():
         st.session_state["connection"] = False
 
     if st.sidebar.button("Connetti al DataBase"):
-        myconnection = connect_db(dialect = "mysql+pymysql", username = "root", password = "mypassword", host = "localhost", dbname = "classicmodels")
+        myconnection = connect_db(dialect = "mysql+pymysql", username = "root", password = "mypassword", host = "localhost", dbname = "hotel")
         if myconnection is not False:
             st.session_state["connection"] = myconnection
         else:
             st.session_state["connection"] = False
-            st.sidebar.error("Errore di connessione")
+            st.sidebar.error("Errore di connessione al DB")
     if st.session_state["connection"]:
         st.sidebar.success("Connesso al db")
         return True
